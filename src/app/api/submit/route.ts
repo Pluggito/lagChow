@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     // 1. Send the Auto-reply to the user
     // NOTE: 'hello@chowvest.com' MUST be verified in your Resend dashboard!
     const userEmailPromise = resend.emails.send({
-      from: 'Opeyemi from LagChow <hello@chowvest.com>', 
+      from: 'Opeyemi from LagChow <noreply@verify.chowvest.com>', 
       to: email, // Sending to the dynamic user email
       subject: "LagChow – You're Early",
       text: messageBody,
