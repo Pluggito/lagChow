@@ -50,9 +50,15 @@ ${formattedResponses}
       `,
     });
 
-    // Only attempt to send if RESEND_API_KEY is actually defined
-    if (process.env.RESEND_API_KEY) {
-      await Promise.all([userEmailPromise, adminEmailPromise]);
+    // Only attempt to send if RESEND_API_KEY is actually defined and valid
+    if (process.env.RESEND_API_KEY && process.env.RESEND_API_KEY.startsWith('re_')) {
+      const [userRes, adminRes] = await Promise.all([userEmailPromise, adminEmailPromise]);
+      
+      if (userRes.error || adminRes.error) {
+        console.error('Resend API Error:', userRes.error || adminRes.error);
+        return NextResponse.json({ success: false, error: userRes.error || adminRes.error }, { status: 400 });
+      }
+      
       console.log('Successfully dispatched emails to User and Admin');
     } else {
        console.log("\n[WARNING] No RESEND_API_KEY found, simulating successful email send.");
