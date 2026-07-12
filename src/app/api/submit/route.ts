@@ -36,7 +36,7 @@ export async function POST(request: Request) {
 
     // 2. Send the notification to the team / admins
     const adminEmailPromise = resend.emails.send({
-      from: 'LagChow Waitlist <hello@chowvest.com>',
+      from: 'LagChow Waitlist <noreply@verify.chowvest.com>',
       to: 'hello@chowvest.com', // As requested, send notifications to this address
       subject: `New LagChow Waitlist Submission: ${name}`,
       text: `
