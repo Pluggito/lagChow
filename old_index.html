@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LagChow Waitlist - Premium Food Delivery</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Phosphor Icons for premium icons -->
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            background: '#050505',
+            foreground: '#ffffff',
+            card: '#111111',
+            accent: '#facc15', // premium yellow
+            border: '#222222',
+            muted: '#888888',
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-15px)' },
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    .glass-card {
+      background: rgba(17, 17, 17, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .hero-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(250, 204, 21, 0.15) 0%, rgba(0,0,0,0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="bg-background text-foreground min-h-screen flex flex-col items-center justify-center relative overflow-x-hidden p-6 antialiased">
+  
+  <!-- Background Accents -->
+  <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-accent/5 blur-[120px]"></div>
+  <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-white/5 blur-[120px]"></div>
+
+  <main class="w-full max-w-lg z-10 flex flex-col items-center animate-fade-in-up">
+    <!-- Logo -->
+    <div class="flex items-center gap-3 mb-12">
+      <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+        <i class="ph-fill ph-hamburger text-2xl text-black"></i>
+      </div>
+      <h1 class="text-3xl font-extrabold tracking-tight">LagChow</h1>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="text-center mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-sm font-medium mb-6 backdrop-blur-md">
+        <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+        Coming soon to Unilag
+      </div>
+      
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+        Campus food delivery, <br class="hidden sm:block" />
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-yellow-200">redefined.</span>
+      </h2>
+      
+      <p class="text-lg text-muted max-w-md mx-auto">
+        Skip the queues and stressful walks. Get your favorite meals from the best spots in and around campus delivered straight to your hostel or faculty.
+      </p>
+    </div>
+
+    <!-- Waitlist Form Card -->
+    <div class="w-full glass-card p-6 md:p-8 rounded-3xl shadow-2xl relative transition-all duration-300 hover:border-white/10 min-h-[480px] flex flex-col">
+      
+      <!-- Intro State -->
+      <div id="intro-state" class="flex-1 flex flex-col items-center justify-center py-6 text-center animate-fade-in-up">
+        <div class="w-16 h-16 rounded-2xl bg-accent/20 flex items-center justify-center mb-6 border border-accent/30 shadow-[0_0_15px_rgba(250,204,21,0.2)]">
+          <i class="ph-fill ph-clipboard-text text-4xl text-accent"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-3">LagChow Student Survey</h3>
+        <p class="text-muted mb-8 max-w-sm">Help us build the perfect food delivery experience for UNILAG students and get early access.</p>
+        <button id="start-btn" class="w-full sm:w-auto px-8 py-3.5 bg-accent text-black font-bold text-lg rounded-xl hover:bg-yellow-400 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+          Start Survey
+        </button>
+      </div>
+
+      <!-- Survey Container -->
+      <div id="survey-container" class="relative w-full flex-1 flex flex-col hidden">
+        <!-- Progress Bar -->
+        <div class="w-full bg-white/10 h-1.5 rounded-full mb-6 mt-2">
+          <div id="progress-bar" class="bg-accent h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+        </div>
+
+        <!-- Question Container -->
+        <div id="question-container" class="flex-1 flex flex-col justify-center transition-all duration-300">
+          <!-- Rendered content goes here -->
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex justify-between mt-8 pt-4 border-t border-white/5">
+          <button id="prev-btn" class="hidden px-4 py-2 rounded-xl text-white hover:bg-white/10 transition-colors flex items-center gap-2">
+            <i class="ph-bold ph-arrow-left"></i> Back
+          </button>
+          <button id="next-btn" class="ml-auto px-6 py-2.5 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+            Next <i class="ph-bold ph-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Success State (Hidden by default) -->
+      <div id="success-state" class="hidden flex-1 flex-col items-center justify-center py-6 text-center">
+        <div class="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center mb-6 border border-green-500/30">
+          <i class="ph-fill ph-check-circle text-5xl text-green-500"></i>
+        </div>
+        <h3 class="text-3xl font-bold mb-3">You're on the list!</h3>
+        <p class="text-muted text-lg">Thank you for your feedback. We'll email you at <span id="success-email" class="text-white font-medium"></span> the moment we launch.</p>
+      </div>
+
+    </div>
+
+    <!-- Social Proof / Footer -->
+    <div class="mt-12 flex flex-col items-center gap-4 text-center">
+      <div class="flex -space-x-3">
+        <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Felix&backgroundColor=facc15" class="w-10 h-10 rounded-full border-2 border-background z-30" alt="Avatar">
+        <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Aneka&backgroundColor=c0aede" class="w-10 h-10 rounded-full border-2 border-background z-20" alt="Avatar">
+        <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Oliver&backgroundColor=b6e3f4" class="w-10 h-10 rounded-full border-2 border-background z-10" alt="Avatar">
+        <div class="w-10 h-10 rounded-full border-2 border-background bg-card flex items-center justify-center text-xs font-bold z-0">
+          +2k
+        </div>
+      </div>
+      <p class="text-sm text-gray-500 font-medium">Join over 2,000 Akokites waiting for launch</p>
+    </div>
+  </main>
+
+  <script>
+    const questions = [
+      { id: 'q1', section: 'Section 1 — About You', title: '1. Where do you stay?', type: 'radio', options: ['New Hall', "Elkanemi", "Gbajabiamila", 'Moremi', 'Mariere', 'Jaja', 'Biobaku', 'Fagunwa', 'Kofo', "Amina", "Biobaku", 'Women Society', 'Off-campus (Akoka)', 'Off-campus (Yaba)', 'Other'] },
+      { id: 'q2', section: 'Section 1 — About You', title: '2. How many times do you buy food in a typical week?', type: 'radio', options: ['1–2', '3–5', '6–10', 'More than 10'] },
+      { id: 'q3', section: 'Section 1 — About You', title: '3. What\'s your usual budget for one meal?', note: '(This question is extremely important for your pricing.)', type: 'radio', options: ['Under ₦1,500', '₦1,500–₦2,500', '₦2,500–₦4,000', 'Above ₦4,000'] },
+      { id: 'q4', section: 'Section 2 — Current Experience', title: '4. Which of these frustrates you the most when buying food?', note: '(Choose up to 3)', type: 'checkbox', max: 3, options: ['Long queues', 'Walking to vendors', 'Food takes too long to prepare', 'Delivery fee', 'Service fee', 'Riders lying about arrival', 'Wrong orders', 'Food quality', 'Vendor customer service', 'Crowded vendors'] },
+      { id: 'q5', section: 'Section 2 — Current Experience', title: '5. How often do you experience long queues?', type: 'radio', options: ['Never', 'Sometimes', 'Often', 'Almost every time'] },
+      { id: 'q6', section: 'Section 2 — Current Experience', title: '6. Have you ever done any of these?', note: '(Select all that apply.)', type: 'checkbox', options: ['Sent a friend to buy food', 'Asked a roommate', 'Used Chowdeck', 'Used Glovo', 'Used Swoop', 'Decided not to buy because of the queue', 'Walked away because delivery was too expensive'] },
+      { id: 'q7', section: 'Section 3 — What Would Make You Switch?', title: '7. If your favorite vendor was available on LagChow, would you try it?', type: 'radio', options: ['Definitely', 'Probably', 'Maybe', 'No'] },
+      { id: 'q8', section: 'Section 3 — What Would Make You Switch?', title: '8. Which features would make you choose LagChow?', note: '(Pick your top 3.)', type: 'checkbox', max: 3, options: ['Lower service fees', 'Faster delivery', 'Verified student trekkers', 'Real-time queue status', 'Accurate delivery tracking', 'Better customer support', 'Vendor ratings', 'Daily food quality reviews', 'More trusted vendors', 'Student discounts'] },
+      { id: 'q9', section: 'Section 3 — What Would Make You Switch?', title: '9. Imagine you\'re ordering food worth ₦2,000.<br/>How much would you comfortably pay for convenience (delivery + service fee)?', note: '(This is one of the most valuable questions for pricing.)', type: 'radio', options: [ '₦300', '₦400', '₦500', '₦600+', 'I wouldn\'t pay extra'] },
+      { id: 'q10', section: 'Section 3 — What Would Make You Switch?', title: '10. Would seeing this before ordering change your decision?', htmlNote: '<div class="flex items-center gap-3 my-5 p-4 bg-black/40 rounded-xl border border-white/10"><div class="flex flex-col gap-2 text-sm"><div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span> Available</div><div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.5)]"></span> Busy</div><div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></span> Rush Hour</div></div><div class="ml-auto text-xs text-gray-400 text-right">Estimated<br/>preparation time</div></div>', type: 'radio', options: ['Definitely', 'Maybe', 'No'] },
+      { id: 'q11', section: 'Section 3 — What Would Make You Switch?', title: '11. Would you trust a verified UNILAG student trekker to deliver your food?', type: 'radio', options: ['Yes', 'Maybe', 'No'] },
+      { id: 'q12', section: 'Section 3 — What Would Make You Switch?', title: '12. What\'s the ONE thing LagChow must get right for you to use it?', note: '(Short answer)', type: 'text' },
+      { id: 'final', section: 'Join the Waitlist', title: 'Almost there! Where should we send your invite?', type: 'form' }
+    ];
+
+    let currentStep = 0;
+    const answers = {};
+
+    document.getElementById('start-btn').addEventListener('click', () => {
+      document.getElementById('intro-state').classList.add('hidden');
+      document.getElementById('survey-container').classList.remove('hidden');
+      renderStep();
+    });
+
+    function renderStep() {
+      const q = questions[currentStep];
+      const container = document.getElementById('question-container');
+      
+      // Animate out
+      container.style.opacity = '0';
+      container.style.transform = 'translateX(-10px)';
+      
+      setTimeout(() => {
+        let html = `
+          <div class="mb-4">
+            <p class="text-accent text-xs font-bold tracking-widest uppercase mb-2">${q.section}</p>
+            <h3 class="text-xl sm:text-2xl font-bold text-white leading-snug">${q.title}</h3>
+            ${q.note ? `<p class="text-muted text-sm mt-2">${q.note}</p>` : ''}
+          </div>
+          ${q.htmlNote ? q.htmlNote : ''}
+        `;
+        
+        if (q.type === 'radio' || q.type === 'checkbox') {
+          html += `<div class="space-y-2.5 max-h-[45vh] overflow-y-auto pr-2 custom-scrollbar">`;
+          q.options.forEach((opt, idx) => {
+            html += `
+              <label class="flex items-center p-3.5 border border-white/10 bg-black/30 rounded-xl cursor-pointer hover:bg-white/5 transition-all">
+                <input type="${q.type}" name="${q.id}" value="${opt}" class="hidden" onchange="handleInput('${q.id}', '${opt}', '${q.type}', ${q.max || null})">
+                <div class="w-5 h-5 flex-shrink-0 ${q.type === 'radio' ? 'rounded-full' : 'rounded-md'} border-2 border-gray-500 flex items-center justify-center mr-3 transition-colors">
+                  ${q.type === 'checkbox' ? '<i class="ph-bold ph-check text-black text-xs opacity-0"></i>' : ''}
+                </div>
+                <span class="text-gray-300 text-sm sm:text-base">${opt}</span>
+              </label>
+            `;
+          });
+          html += `</div>`;
+        } else if (q.type === 'text') {
+          const val = answers[q.id] || '';
+          html += `
+            <textarea id="${q.id}-input" rows="4" class="w-full p-4 bg-black/50 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent resize-none transition-all" placeholder="Type your answer here..." oninput="handleText('${q.id}', this.value)">${val}</textarea>
+          `;
+        } else if (q.type === 'form') {
+          const nameVal = answers['name'] || '';
+          const emailVal = answers['email'] || '';
+          html += `
+            <div class="space-y-4 w-full mt-2">
+              <div class="space-y-1.5">
+                <label class="text-sm font-medium text-gray-300 ml-1">Full Name</label>
+                <div class="relative flex items-center">
+                  <i class="ph ph-user absolute left-4 text-xl text-gray-400"></i>
+                  <input type="text" id="final-name" value="${nameVal}" placeholder="John Doe" class="w-full h-14 pl-11 pr-4 bg-black/50 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all" oninput="handleText('name', this.value)">
+                </div>
+              </div>
+              <div class="space-y-1.5">
+                <label class="text-sm font-medium text-gray-300 ml-1">Email Address</label>
+                <div class="relative flex items-center">
+                  <i class="ph ph-envelope-simple absolute left-4 text-xl text-gray-400"></i>
+                  <input type="email" id="final-email" value="${emailVal}" placeholder="hello@example.com" class="w-full h-14 pl-11 pr-4 bg-black/50 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all" oninput="handleText('email', this.value)">
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        container.innerHTML = html;
+        
+        // Update progress
+        document.getElementById('progress-bar').style.width = `${(currentStep / (questions.length - 1)) * 100}%`;
+        
+        // Update buttons
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        if (currentStep === 0) {
+          prevBtn.classList.add('hidden');
+        } else {
+          prevBtn.classList.remove('hidden');
+        }
+        
+        if (currentStep === questions.length - 1) {
+          nextBtn.innerHTML = `<span>Join Waitlist</span> <i class="ph-bold ph-rocket"></i>`;
+          nextBtn.classList.add('bg-accent', 'text-black');
+          nextBtn.classList.remove('bg-white');
+        } else {
+          nextBtn.innerHTML = `Next <i class="ph-bold ph-arrow-right"></i>`;
+          nextBtn.classList.remove('bg-accent');
+          nextBtn.classList.add('bg-white', 'text-black');
+        }
+        
+        // Restore state visually if already answered
+        updateOptionsUI();
+        checkNextButtonState();
+        
+        // Animate in
+        requestAnimationFrame(() => {
+          container.style.transition = 'all 0.3s ease-out';
+          container.style.opacity = '1';
+          container.style.transform = 'translateX(0)';
+        });
+        
+      }, 200);
+    }
+
+    window.handleInput = function(id, val, type, max) {
+      if (type === 'radio') {
+        answers[id] = val;
+        updateOptionsUI();
+        checkNextButtonState();
+        // Auto advance after short delay for single choice
+        setTimeout(() => {
+          document.getElementById('next-btn').click();
+        }, 350);
+      } else if (type === 'checkbox') {
+        if (!answers[id]) answers[id] = [];
+        const idx = answers[id].indexOf(val);
+        if (idx > -1) {
+          answers[id].splice(idx, 1);
+        } else {
+          if (max && answers[id].length >= max) {
+            // Remove first selected if limit reached
+            answers[id].shift(); 
+          }
+          answers[id].push(val);
+        }
+        updateOptionsUI();
+        checkNextButtonState();
+      }
+    };
+
+    window.handleText = function(id, val) {
+      answers[id] = val;
+      checkNextButtonState();
+    };
+
+    function updateOptionsUI() {
+      const q = questions[currentStep];
+      if (q.type !== 'radio' && q.type !== 'checkbox') return;
+      
+      const labels = document.querySelectorAll('#question-container label');
+      labels.forEach((label, idx) => {
+        const opt = q.options[idx];
+        const isChecked = Array.isArray(answers[q.id]) 
+          ? answers[q.id].includes(opt) 
+          : answers[q.id] === opt;
+          
+        const input = label.querySelector('input');
+        input.checked = isChecked;
+        
+        const box = label.querySelector('div.w-5');
+        const span = label.querySelector('span');
+        
+        if (isChecked) {
+          label.classList.remove('border-white/10', 'bg-black/30');
+          label.classList.add('border-accent', 'bg-accent/10');
+          box.classList.remove('border-gray-500');
+          box.classList.add('border-accent', 'bg-accent');
+          
+          if (q.type === 'radio') {
+            box.innerHTML = '<div class="w-2 h-2 bg-black rounded-full"></div>';
+          } else {
+            const icon = box.querySelector('i');
+            if(icon) icon.classList.replace('opacity-0', 'opacity-100');
+          }
+          
+          span.classList.remove('text-gray-300');
+          span.classList.add('text-white', 'font-medium');
+        } else {
+          label.classList.add('border-white/10', 'bg-black/30');
+          label.classList.remove('border-accent', 'bg-accent/10');
+          box.classList.add('border-gray-500');
+          box.classList.remove('border-accent', 'bg-accent');
+          
+          if (q.type === 'radio') {
+            box.innerHTML = '';
+          } else {
+            const icon = box.querySelector('i');
+            if(icon) icon.classList.replace('opacity-100', 'opacity-0');
+          }
+          
+          span.classList.add('text-gray-300');
+          span.classList.remove('text-white', 'font-medium');
+        }
+      });
+    }
+
+    function checkNextButtonState() {
+      const q = questions[currentStep];
+      const nextBtn = document.getElementById('next-btn');
+      let isValid = false;
+      
+      if (q.type === 'radio') {
+        isValid = !!answers[q.id];
+      } else if (q.type === 'checkbox') {
+        isValid = answers[q.id] && answers[q.id].length > 0;
+      } else if (q.type === 'text') {
+        isValid = answers[q.id] && answers[q.id].trim().length > 0;
+      } else if (q.type === 'form') {
+        const name = answers['name'];
+        const email = answers['email'];
+        isValid = name && name.trim().length > 0 && email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+      
+      nextBtn.disabled = !isValid;
+    }
+
+    document.getElementById('prev-btn').addEventListener('click', () => {
+      if (currentStep > 0) {
+        currentStep--;
+        renderStep();
+      }
+    });
+
+    document.getElementById('next-btn').addEventListener('click', async () => {
+      if (currentStep < questions.length - 1) {
+        currentStep++;
+        renderStep();
+      } else {
+        // Submit
+        const btn = document.getElementById('next-btn');
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<i class="ph ph-spinner animate-spin text-xl"></i>';
+        btn.disabled = true;
+        
+        try {
+          // TODO: Implement actual API call to your backend endpoint to trigger Resend
+          // e.g., await fetch('/api/waitlist', { method: 'POST', body: JSON.stringify(answers), headers: { 'Content-Type': 'application/json' } });
+          console.log('Form data to send to hello@chowvest.com:', answers);
+          
+          // Simulate network request
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          
+          document.getElementById('survey-container').classList.add('hidden');
+          document.getElementById('success-email').textContent = answers.email;
+          document.getElementById('success-state').classList.remove('hidden');
+          document.getElementById('success-state').classList.add('flex', 'animate-fade-in-up');
+          
+        } catch (err) {
+          console.error(err);
+          btn.innerHTML = originalHtml;
+          btn.disabled = false;
+          alert('Something went wrong. Please try again.');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
