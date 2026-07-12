@@ -82,7 +82,11 @@ export default function WaitlistPage() {
           setAnswers({ ...answers, q17: newQ17 });
       }
 
-      setCurrentStepIndex(prev => prev + 1);
+      if (q.id === 'q13' && answers['q13'] === 'No') {
+        setCurrentStepIndex(questions.length - 1);
+      } else {
+        setCurrentStepIndex(prev => prev + 1);
+      }
     } else {
       setIsSubmitting(true);
       try {
@@ -104,7 +108,12 @@ export default function WaitlistPage() {
 
   const handlePrev = () => {
     if (currentStepIndex > 0) {
-      setCurrentStepIndex(prev => prev - 1);
+      if (currentStepIndex === questions.length - 1 && answers['q13'] === 'No') {
+        const q13Index = questions.findIndex(question => question.id === 'q13');
+        setCurrentStepIndex(q13Index);
+      } else {
+        setCurrentStepIndex(prev => prev - 1);
+      }
     }
   };
 
