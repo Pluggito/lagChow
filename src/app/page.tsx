@@ -21,16 +21,21 @@ const questions: Question[] = [
   { id: 'q1', section: 'Section 1 — About You', title: '1. Where do you stay?', type: 'radio', options: ['New Hall', 'Moremi', 'Mariere', "Elkanemi", "Gbajabiamila", 'Jaja', 'Biobaku', 'Fagunwa', 'Kofo', "Amina", 'Women Society', 'Off-campus (Akoka)', 'Off-campus (Yaba)', 'Other'] },
   { id: 'q2', section: 'Section 1 — About You', title: '2. How many times do you buy food in a typical week?', type: 'radio', options: ['1–2', '3–5', '6–10', 'More than 10'] },
   { id: 'q3', section: 'Section 1 — About You', title: '3. What\'s your usual budget for one meal?', note: '(This question is extremely important for your pricing.)', type: 'radio', options: ['Under ₦1,500', '₦1,500–₦2,500', '₦2,500–₦4,000', 'Above ₦4,000'] },
-  { id: 'q4', section: 'Section 2 — Current Experience', title: '4. Which of these frustrates you the most when buying food?', note: '(Choose up to 3)', type: 'checkbox', max: 3, options: ['Long queues', 'Walking to vendors', 'Food takes too long to prepare', 'Delivery fee', 'Service fee', 'Riders lying about arrival', 'Wrong orders', 'Food quality', 'Vendor customer service', 'Crowded vendors'] },
-  { id: 'q5', section: 'Section 2 — Current Experience', title: '5. How often do you experience long queues?', type: 'radio', options: ['Never', 'Sometimes', 'Often', 'Almost every time'] },
-  { id: 'q6', section: 'Section 2 — Current Experience', title: '6. Have you ever done any of these?', note: '(Select all that apply.)', type: 'checkbox', options: ['Sent a friend to buy food', 'Asked a roommate', 'Used Chowdeck', 'Used Glovo', 'Used Swoop', 'Decided not to buy because of the queue', 'Walked away because delivery was too expensive'] },
-  { id: 'q7', section: 'Section 3 — What Would Make You Switch?', title: '7. If your favorite vendor was available on LagChow, would you try it?', type: 'radio', options: ['Definitely', 'Probably', 'Maybe', 'No'] },
-  { id: 'q8', section: 'Section 3 — What Would Make You Switch?', title: '8. Which features would make you choose LagChow?', note: '(Pick your top 3.)', type: 'checkbox', max: 3, options: ['Lower service fees', 'Faster delivery', 'Verified student trekkers', 'Real-time queue status', 'Accurate delivery tracking', 'Better customer support', 'Vendor ratings', 'Daily food quality reviews', 'More trusted vendors', 'Student discounts'] },
-  { id: 'q9', section: 'Section 3 — What Would Make You Switch?', title: '9. Imagine you\'re ordering food worth ₦2,000. How much would you comfortably pay for convenience (delivery + service fee)?', note: '(This is one of the most valuable questions for pricing.)', type: 'radio', options: ['₦300', '₦400', '₦500', '₦600+', 'I wouldn\'t pay extra'] },
+  
+  // Section 2 starts
+  { id: 'q4', section: 'Section 2 — Current Experience', title: '4. List your top 3 favorite food vendors in UNILAG.', type: 'text' },
+  { id: 'q5', section: 'Section 2 — Current Experience', title: '5. Which of these frustrates you the most when buying food?', note: '(Choose up to 3)', type: 'checkbox', max: 3, options: ['Long queues', 'Walking to vendors', 'Food takes too long to prepare', 'Delivery fee', 'Service fee', 'Riders lying about arrival', 'Wrong orders', 'Food quality', 'Vendor customer service', 'Crowded vendors'] },
+  { id: 'q6', section: 'Section 2 — Current Experience', title: '6. How often do you experience long queues?', type: 'radio', options: ['Never', 'Sometimes', 'Often', 'Almost every time'] },
+  { id: 'q7', section: 'Section 2 — Current Experience', title: '7. Have you ever done any of these?', note: '(Select all that apply.)', type: 'checkbox', options: ['Sent a friend to buy food', 'Asked a roommate', 'Used Chowdeck', 'Used Glovo', 'Used Swoop', 'Decided not to buy because of the queue', 'Walked away because delivery was too expensive'] },
+  
+  // Section 3 starts
+  { id: 'q8', section: 'Section 3 — What Would Make You Switch?', title: '8. If your favorite vendor was available on LagChow, would you try it?', type: 'radio', options: ['Definitely', 'Probably', 'Maybe', 'No'] },
+  { id: 'q9', section: 'Section 3 — What Would Make You Switch?', title: '9. Which features would make you choose LagChow?', note: '(Pick your top 3.)', type: 'checkbox', max: 3, options: ['Lower service fees', 'Faster delivery', 'Verified student trekkers', 'Real-time queue status', 'Accurate delivery tracking', 'Better customer support', 'Vendor ratings', 'Daily food quality reviews', 'More trusted vendors', 'Student discounts'] },
+  { id: 'q10', section: 'Section 3 — What Would Make You Switch?', title: '10. Imagine you\'re ordering food worth ₦2,000. How much would you comfortably pay for convenience (delivery + service fee)?', note: '(This is one of the most valuable questions for pricing.)', type: 'radio', options: ['₦300', '₦400', '₦500', '₦600+', 'I wouldn\'t pay extra'] },
   { 
-    id: 'q10', 
+    id: 'q11', 
     section: 'Section 3 — What Would Make You Switch?', 
-    title: '10. Would seeing this before ordering change your decision?', 
+    title: '11. Would seeing this before ordering change your decision?', 
     htmlNote: (
       <div className="flex items-center gap-3 my-5 p-4 bg-black/40 rounded-xl border border-white/10">
         <div className="flex flex-col gap-2 text-sm">
@@ -44,18 +49,18 @@ const questions: Question[] = [
     type: 'radio', 
     options: ['Definitely', 'Maybe', 'No'] 
   },
-  { id: 'q11', section: 'Section 3 — What Would Make You Switch?', title: '11. Would you trust a verified UNILAG student trekker to deliver your food?', type: 'radio', options: ['Yes', 'Maybe', 'No'] },
-  { id: 'q12', section: 'Section 3 — What Would Make You Switch?', title: '12. What\'s the ONE thing LagChow must get right for you to use it?', note: '(Short answer)', type: 'text' },
+  { id: 'q12', section: 'Section 3 — What Would Make You Switch?', title: '12. Would you trust a verified UNILAG student trekker to deliver your food?', type: 'radio', options: ['Yes', 'Maybe', 'No'] },
+  { id: 'q13', section: 'Section 3 — What Would Make You Switch?', title: '13. What\'s the ONE thing LagChow must get right for you to use it?', note: '(Short answer)', type: 'text' },
   
-  // New Earning Questions (Q13-Q20)
-  { id: 'q13', section: 'Interested in Earning with LagChow?', title: '13. Would you be interested in earning money by delivering food around campus between classes?', type: 'radio', options: ['Definitely', 'Maybe', 'No'] },
-  { id: 'q14', section: 'Interested in Earning with LagChow?', title: '14. How many hours per day could you realistically deliver food?', type: 'radio', options: ['Less than 1 hour', '1–2 hours', '2–4 hours', 'More than 4 hours'] },
-  { id: 'q15', section: 'Interested in Earning with LagChow?', title: '15. Which times are you usually free?', note: '(Select all that apply.)', type: 'checkbox', options: ['8am–11am', '11am–2pm', '2pm–5pm', '5pm–8pm', '8pm–11pm'] },
-  { id: 'q16', section: 'Interested in Earning with LagChow?', title: '16. Which delivery method would you prefer?', type: 'radio', options: ['Walking (Trekker)', 'Bicycle', 'Motorcycle', 'Either'] },
-  { id: 'q17', section: 'Interested in Earning with LagChow?', title: '17. What would motivate you to become a LagChow delivery partner?', type: 'checkbox', options: ['Extra income', 'Flexible schedule', 'Walking around campus anyway', 'Meeting people', 'Other (Please specify)'] },
-  { id: 'q18', section: 'Interested in Earning with LagChow?', title: '18. How much would you expect to earn per successful delivery?', note: 'This question is important because it tells you whether your proposed payout is attractive enough.', type: 'radio', options: ['₦250–₦300', '₦300–₦350', '₦350–₦400'] },
-  { id: 'q19', section: 'Interested in Earning with LagChow?', title: '19. Would you be willing to wear a LagChow vest or branded T-shirt while delivering?', note: 'This validates our branding idea.', type: 'radio', options: ['Yes', 'Maybe', 'No'] },
-  { id: 'q20', section: 'Interested in Earning with LagChow?', title: '20. If you\'re interested in becoming a delivery partner, leave your WhatsApp number.', note: '(Optional)', type: 'text', optional: true },
+  // New Earning Questions
+  { id: 'q14', section: 'Interested in Earning with LagChow?', title: '14. Would you be interested in earning money by delivering food around campus between classes?', type: 'radio', options: ['Definitely', 'Maybe', 'No'] },
+  { id: 'q15', section: 'Interested in Earning with LagChow?', title: '15. How many hours per day could you realistically deliver food?', type: 'radio', options: ['Less than 1 hour', '1–2 hours', '2–4 hours', 'More than 4 hours'] },
+  { id: 'q16', section: 'Interested in Earning with LagChow?', title: '16. Which times are you usually free?', note: '(Select all that apply.)', type: 'checkbox', options: ['8am–11am', '11am–2pm', '2pm–5pm', '5pm–8pm', '8pm–11pm'] },
+  { id: 'q17', section: 'Interested in Earning with LagChow?', title: '17. Which delivery method would you prefer?', type: 'radio', options: ['Walking (Trekker)', 'Bicycle', 'Motorcycle', 'Either'] },
+  { id: 'q18', section: 'Interested in Earning with LagChow?', title: '18. What would motivate you to become a LagChow delivery partner?', type: 'checkbox', options: ['Extra income', 'Flexible schedule', 'Walking around campus anyway', 'Meeting people', 'Other (Please specify)'] },
+  { id: 'q19', section: 'Interested in Earning with LagChow?', title: '19. How much would you expect to earn per successful delivery?', note: 'This question is important because it tells you whether your proposed payout is attractive enough.', type: 'radio', options: ['₦250–₦300', '₦300–₦350', '₦350–₦400'] },
+  { id: 'q20', section: 'Interested in Earning with LagChow?', title: '20. Would you be willing to wear a LagChow vest or branded T-shirt while delivering?', note: 'This validates our branding idea.', type: 'radio', options: ['Yes', 'Maybe', 'No'] },
+  { id: 'q21', section: 'Interested in Earning with LagChow?', title: '21. If you\'re interested in becoming a delivery partner, leave your WhatsApp number.', note: '(Optional)', type: 'text', optional: true },
   
   // Final Form
   { id: 'final', section: 'Join the Waitlist', title: 'Almost there! Where should we send your invite?', type: 'form' }
@@ -76,13 +81,13 @@ export default function WaitlistPage() {
 
   const handleNext = async () => {
     if (currentStepIndex < questions.length - 1) {
-      if (q.id === 'q17' && answers['q17']?.includes('Other (Please specify)')) {
-          const newQ17 = answers['q17'].filter((a: string) => a !== 'Other (Please specify)');
-          if (otherText.trim()) newQ17.push(`Other: ${otherText.trim()}`);
-          setAnswers({ ...answers, q17: newQ17 });
+      if (q.id === 'q18' && answers['q18']?.includes('Other (Please specify)')) {
+          const newQ18 = answers['q18'].filter((a: string) => a !== 'Other (Please specify)');
+          if (otherText.trim()) newQ18.push(`Other: ${otherText.trim()}`);
+          setAnswers({ ...answers, q18: newQ18 });
       }
 
-      if (q.id === 'q13' && answers['q13'] === 'No') {
+      if (q.id === 'q14' && answers['q14'] === 'No') {
         setCurrentStepIndex(questions.length - 1);
       } else {
         setCurrentStepIndex(prev => prev + 1);
@@ -108,9 +113,9 @@ export default function WaitlistPage() {
 
   const handlePrev = () => {
     if (currentStepIndex > 0) {
-      if (currentStepIndex === questions.length - 1 && answers['q13'] === 'No') {
-        const q13Index = questions.findIndex(question => question.id === 'q13');
-        setCurrentStepIndex(q13Index);
+      if (currentStepIndex === questions.length - 1 && answers['q14'] === 'No') {
+        const q14Index = questions.findIndex(question => question.id === 'q14');
+        setCurrentStepIndex(q14Index);
       } else {
         setCurrentStepIndex(prev => prev - 1);
       }
@@ -158,7 +163,7 @@ export default function WaitlistPage() {
     } else if (q.type === 'checkbox') {
       const arr = answers[q.id];
       isNextDisabled = !arr || arr.length === 0;
-      if (!isNextDisabled && q.id === 'q17' && arr.includes('Other (Please specify)')) {
+      if (!isNextDisabled && q.id === 'q18' && arr.includes('Other (Please specify)')) {
          isNextDisabled = otherText.trim().length === 0;
       }
     } else if (q.type === 'text') {
@@ -255,7 +260,8 @@ export default function WaitlistPage() {
                             <span className={`text-sm sm:text-base ${isChecked ? 'text-white font-medium' : 'text-gray-300'}`}>{opt}</span>
                           </label>
                           
-                          {q.id === 'q17' && opt === 'Other (Please specify)' && isChecked && (
+                          {/* Render text input if 'Other (Please specify)' is selected in Q18 */}
+                          {q.id === 'q18' && opt === 'Other (Please specify)' && isChecked && (
                             <div className="mt-3 ml-2 animate-fade-in-up">
                                <input 
                                   type="text" 
